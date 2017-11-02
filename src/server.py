@@ -1,5 +1,5 @@
 #! /usr/bin/python
-from PyQt5.QtCore import QObject, pyqtSignal
+# from PyQt5.QtCore import QObject, pyqtSignal
 import socketserver
 import json
 import netifaces

@@ -1,12 +1,13 @@
-from PyQt5.QtWidgets import QMainWindow
-from .view.player_view import Ui_VLCMainWindow
+# from PyQt5.QtWidgets import QMainWindow
+# from .view.player_view import Ui_VLCMainWindow
 from .player_model import VLCPLayer
 
 
-class VLCPLayerController(QMainWindow, Ui_VLCMainWindow):
+# class VLCPLayerController(QMainWindow, Ui_VLCMainWindow):
+class VLCPLayerController(object):
 	def __init__(self):
-		super(VLCPLayerController, self).__init__()
-		self.setupUi(self)
+		# super(VLCPLayerController, self).__init__()
+		# self.setupUi(self)
 		self.player = VLCPLayer()
 
 	def play(self):

@@ -1,7 +1,7 @@
 from threading import Thread
 from src.player.player_controller import VLCPLayerController
 from src.server import ThreadedTCPServer
-from PyQt5.QtWidgets import QApplication
+# from PyQt5.QtWidgets import QApplication
 import sys
 
 
@@ -25,6 +25,6 @@ def start_server():
 
 
 if __name__ == '__main__':
-	app = QApplication(sys.argv)
+	# app = QApplication(sys.argv)
 	start_server()
-	sys.exit(app.exec_())
+	# sys.exit(app.exec_())
