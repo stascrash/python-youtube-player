@@ -1,3 +1,12 @@
+# Objective of this project
+I forked the original code, and i am interested in implementing 
+a media server for my video library.
+
+i am interested in using Flask and Spyne (rpc), instead of sockets, and integrate with PyQt for some client-UI.
+The goal is to have a simulated Digital Asset Management, as an entry point for TACTIC Asset Management
+
+
+
 # Python Youtube Player
 Python project to play YouTube videos through a multi-clint server and receive commands over the network 
 
