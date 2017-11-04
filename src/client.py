@@ -2,7 +2,7 @@
 
 import socket, sys, json
 
-HOST = "192.168.1.44"
+HOST = "192.168.1.48"
 PORT = 10200
 
 
