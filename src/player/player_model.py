@@ -11,7 +11,9 @@ class VLCPLayer(YouTubePlayer):
 		self.list_player = self.instance.media_list_player_new()
 		self.list_player.set_media_player(self.player)
 		self.list_player.set_media_list(self.playlist)
-		self.event_manager = self.list_player.event_manager()
+		self.event_manager = self.player.event_manager()
+
+
 
 
 class VLCPLayerModel(object):

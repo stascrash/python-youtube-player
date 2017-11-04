@@ -51,8 +51,8 @@ def start_services(*services):
 	                  out_protocol=Soap11())
 
 	wsgi_app = WsgiApplication(app)
-	server = make_server('192.168.1.44', 10200, wsgi_app)
-	print("listening to http://192.168.1.44:10200")
-	print("wsdl is at: http://192.168.1.44:10200/?wsdl")
+	server = make_server('192.168.1.72', 10200, wsgi_app)
+	print("listening to http://192.168.1.72:10200")
+	print("wsdl is at: http://192.168.1.72:10200/?wsdl")
 
 	server.serve_forever()
