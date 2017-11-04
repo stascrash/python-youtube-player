@@ -74,13 +74,13 @@ class YouTubePlayer:
 			return self.playlist.index_of_item(media)
 
 	def enqueue(self, yt_vid):
-		print("I need to Que")
+		print("I need to Que: {}".format(yt_vid.stream_url))
 		self.playlist.lock()
 		media = self.instance.media_new(yt_vid.stream_url)
 		media.parse()
-		meta = vlc.Meta()
-		media.set_meta(0, yt_vid.name)
-		media.set_meta(6, yt_vid.to_JSON())
+		# meta = vlc.Meta()
+		# media.set_meta(0, yt_vid.name)
+		# media.set_meta(6, yt_vid.to_JSON())
 		self.playlist.add_media(media)
 		# print "playlist size is now", self.playlist.count()
 		self.playlist.unlock()

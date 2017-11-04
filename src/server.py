@@ -2,7 +2,7 @@
 # from PyQt5.QtCore import QObject, pyqtSignal
 import socketserver
 import json
-import netifaces
+# import netifaces
 from urllib.parse import urlencode
 from src.youtube_lib import YouTubeVideo
 
@@ -89,14 +89,15 @@ class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
 		self.player = player_controller
 
 	def get_ip(self):
-		for interface in netifaces.interfaces():
-			try:
-				ip_address = netifaces.ifaddresses(interface)[2][0]['addr']
-				if ip_address != "127.0.0.1":
-					return ip_address
-			except KeyError:
-				pass
-		raise ValueError("Cannot obtain IP address. Check your internet connection")
+		return '192.168.1.72'
+		# for interface in netifaces.interfaces():
+		# 	try:
+		# 		ip_address = netifaces.ifaddresses(interface)[2][0]['addr']
+		# 		if ip_address != "127.0.0.1":
+		# 			return ip_address
+		# 	except KeyError:
+		# 		pass
+		# raise ValueError("Cannot obtain IP address. Check your internet connection")
 
 	def start(self):
 		ip, port = self.server_address
