@@ -1,41 +1,30 @@
-from src.player.player_controller import VLCPLayerController
-from src.server.controller import VLCService, ServiceController
-from PyQt4.Qt import QApplication, QThread
 import sys
 import os
 sys.path.append(os.path.dirname(__file__))
 
 
-class ServiceThread(QThread):
-	def __init__(self):
-		QThread.__init__(self)
-		self.service_controller = ServiceController()
-		self.service = None
-
-	def setup(self, player_controller):
-		self.service = VLCService
-		self.service.set_controller(player_controller)
-		self.service_controller.moveToThread(self)
-
-	def run(self):
-		self.service_controller.start_all(self.service)
+from PyQt4.Qt import QApplication
+from PyQt4.QtGui import QWidget, QIcon
+from src.server import service_app
+import logging
+LOGGER = logging.getLogger()
 
 
+def main():
+	LOGGER.debug("Starting")
+	app = QApplication(sys.argv)
+	app.setQuitOnLastWindowClosed(False)
 
-def start_server():
+	icon = QIcon("data/fire.ico")
+	parent = QWidget()
+
 	data_path = os.path.join(os.path.dirname(__file__), 'data')
-	player_controller = VLCPLayerController(data_path)
 
-	services_thread = ServiceThread()
-	services_thread.setup(player_controller)
-	services_thread.start()
-
-	while 1:
-		pass
-
+	tray = service_app.Systray(icon, parent, data_path)
+	tray.show()
+	sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
-	app = QApplication(sys.argv)
-	start_server()
-	sys.exit(app.exec_())
+	main()
+

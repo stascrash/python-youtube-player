@@ -35,7 +35,7 @@ class YouTubeVideo():
 		return YouTubeVideo(titl, url, str_u, dur)
 
 
-class YouTubePlayer:
+class YouTubePlayer(object):
 	def __init__(self):
 		# --no-xlib --no-stats --no-video
 		self.instance = vlc.Instance("--no-video")
