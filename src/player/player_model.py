@@ -21,7 +21,6 @@ class VLCModel(VLCPLayer):
 	def __init__(self, data_path):
 		super(VLCModel, self).__init__()
 		self.data_path = data_path
-		# self.player = VLCPLayer()
 
 	def add(self, video_request):
 		try:
@@ -31,12 +30,6 @@ class VLCModel(VLCPLayer):
 			path = os.path.join(self.data_path, video_request)
 			yt_vid = data(stream_url=os.path.normpath(path))
 		self.add_to_yt_que(yt_vid)
-
-	def play(self):
-		self.play()
-
-	def pause(self):
-		self.pause()
 
 	def add_to_yt_que(self, yt_vid):
 		self.enqueue(yt_vid)

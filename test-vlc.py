@@ -4,7 +4,7 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.DEBUG)
 
 vlc_client = Client('http://192.168.1.44:10200/?wsdl')
-
+# print(vlc_client)
 # vlc_client.service.add("https://www.youtube.com/watch?v=_V7ZKk-NJVA")
 vlc_client.service.add("https://www.youtube.com/watch?v=_V7ZKk-NJVA")
 # vlc_client.service.add("maya.mov")

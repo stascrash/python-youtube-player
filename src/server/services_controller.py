@@ -10,10 +10,11 @@ from spyne.protocol.soap import Soap11
 from spyne.protocol.json import JsonDocument
 from wsgiref.simple_server import make_server
 from PyQt4.Qt import QObject
+from spyne.server.twisted import TwistedWebResource
 
 from twisted.internet import reactor
 from twisted.web.server import Site
-from twisted.web.wsgi import WSGIResource
+# from twisted.web.wsgi import WSGIResource
 from twisted.python import log
 
 
@@ -44,6 +45,7 @@ class Services(QObject):
 	def start_with_twisted_backend(self):
 		PORT = 10200
 		HOST = "192.168.1.44"
+
 		logging.basicConfig(level=logging.DEBUG)
 		logging.getLogger('spyne.protocol.xml').setLevel(logging.DEBUG)
 
@@ -51,17 +53,16 @@ class Services(QObject):
 		log.startLoggingWithObserver(observer.emit, setStdout=False)
 
 		application = Application([VLCService], 'spyne.vlc.service.http',
-		                          in_protocol=Soap11(validator='soft'),
+		                          in_protocol=Soap11(validator='lxml'),
 		                          out_protocol=Soap11())
-
-		wsgi_application = WsgiApplication(application)
-		resource = WSGIResource(reactor, reactor, wsgi_application)
-		site = Site(resource)
-
-		reactor.listenTCP(PORT, site, interface=HOST)
 
 		logging.info('listening on: %s:%d' % (HOST, PORT))
 		logging.info('wsdl is at: http://%s:%d/?wsdl' % (HOST, PORT))
+
+		resource = TwistedWebResource(application)
+		site = Site(resource)
+
+		reactor.listenTCP(PORT, site, interface=HOST)
 		reactor.run()
 
 	def start(self):

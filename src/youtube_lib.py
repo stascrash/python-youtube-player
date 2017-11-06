@@ -1,5 +1,6 @@
 import sys, vlc, pafy  # https://github.com/mps-youtube/pafy
 import json
+import logging
 
 
 class YouTubeVideo():
@@ -47,7 +48,7 @@ class YouTubePlayer(object):
 		self.event_manager = self.list_player.event_manager()
 
 	def play(self):
-		print("I need to play")
+		logging.debug("I need to play")
 		self.list_player.play()
 		return
 
@@ -74,7 +75,7 @@ class YouTubePlayer(object):
 			return self.playlist.index_of_item(media)
 
 	def enqueue(self, yt_vid):
-		print("I need to Que: {}".format(yt_vid.stream_url))
+		logging.debug("I need to Que: {}".format(yt_vid.stream_url))
 		self.playlist.lock()
 		media = self.instance.media_new(yt_vid.stream_url)
 		media.parse()
